@@ -1,3 +1,10 @@
+/*Travail fait en équipe avec Mathieu Malette, Émile Bisaillon et Thomas Bégin
+
+Author : JEREMY ST-ONGE
+
+*/
+
+
 const express = require('express');
 const fs = require('fs');
 const util = require("util");
@@ -53,10 +60,10 @@ console.log('connexion à la BD')
 Les routes
 */
 
-////////////////////////////////////////// Route /
+/*===================================================*/ //Route /
 app.set('view engine', 'ejs'); // générateur de template
 
-///////////////////////////////////////////
+/*===================================================*/
 
 app.get("/:locale(en|fr)", (req,res)=>{
 
@@ -71,7 +78,7 @@ app.get("/:locale(en|fr)", (req,res)=>{
 
 })
 
-//////////////////////////////////////////
+/*===================================================*/
 app.get('/', function (req, res) {
 
  console.log("req.cookies.langueChoisie = " + req.cookies.langueChoisie)
@@ -80,7 +87,7 @@ app.get('/', function (req, res) {
  
   });
 
-//////////////////////////////////////////
+/*===================================================*/
 
 app.post('/ajax_modifier', (req,res) => {
    console.log("La route = /ajax_modifier")
@@ -94,7 +101,7 @@ app.post('/ajax_modifier', (req,res) => {
    })
 })
 
-//////////////////////////////////////////
+/*===================================================*/
 
 app.post('/ajax_detruire', (req, res) => {
 	let id = req.body._id
@@ -105,7 +112,7 @@ app.post('/ajax_detruire', (req, res) => {
   })
 })
 
-//////////////////////////////////////////  Route Adresse
+//////////////////////////////////////////  Route pour Adresse
 app.get('/adresse', function (req, res) {
    var cursor = db.collection('adresse')
                 .find().toArray(function(err, resultat){
@@ -113,11 +120,11 @@ app.get('/adresse', function (req, res) {
  res.render('adresse.ejs', {adresses: resultat})   
   });
 })
-//////////////////////////////////////////  Route Rechercher
+//////////////////////////////////////////  Route pour Rechercher
 app.post('/rechercher',  (req, res) => {
 
 })
-////////////////////////////////////////// Route /ajouter
+////////////////////////////////////////// Route pour ajouter
 app.post('/ajouter', (req, res) => {
 console.log('route /ajouter')	
  db.collection('adresse').save(req.body, (err, result) => {
@@ -128,7 +135,7 @@ console.log('route /ajouter')
  })
 })
 
-////////////////////////////////////////  Route /modifier
+////////////////////////////////////////  Route pour modifier
 app.post('/modifier', (req, res) => {
 console.log('route /modifier')
 // console.log('util = ' + util.inspect(req.body));
@@ -141,7 +148,7 @@ req.body._id = 	ObjectID(req.body._id)
 })
 
 
-////////////////////////////////////////  Route /detruire
+////////////////////////////////////////  Route pour detruire
 app.get('/detruire/:id', (req, res) => {
  console.log('route /detruire')
  // console.log('util = ' + util.inspect(req.params));	
@@ -170,7 +177,7 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 }) 
 
 
-/////////////////////////////////////////////////////////  Route /peupler
+/////////////////////////////////////////////////////////  Route pour peupler
 app.get('/vider', (req, res) => {
 
 	let cursor = db.collection('adresse').drop((err, res)=>{
@@ -181,7 +188,7 @@ app.get('/vider', (req, res) => {
 	res.redirect('/adresse')
 })
 
-//////////////////////////////////////////////////////// Route Peupler
+//////////////////////////////////////////////////////// Route pour Peupler
 app.get('/peupler', (req, res) => {
 	let resultat = Peupler();
 	db.collection('adresse').insert(resultat, (err, result) => {
@@ -191,7 +198,7 @@ app.get('/peupler', (req, res) => {
 })
 
 
-//////////////////////////////////////////////////////// Route chat
+//////////////////////////////////////////////////////// Route pour chat
 app.get('/chat', (req, res) => {
 
 
