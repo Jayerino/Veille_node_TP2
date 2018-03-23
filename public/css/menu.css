@@ -1,3 +1,19 @@
+#menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column !important;
+  color : #4c7299;
+}
+
+
+#nodejs {
+  font-size: 9em;
+  width : 90%;
+  text-align: center;
+}
+
+
 .couleur-menu {
   display: flex;
   flex-direction: row;
